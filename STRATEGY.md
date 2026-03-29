@@ -134,7 +134,7 @@ Your sequence is right; a few steps around it make the foundation “deep” ins
 |------|------------|-----|
 | **1. Sub-focus** | Pick one household storyline (e.g. maintenance + seasonal tasks, or inventory + warranties). | One schema; one demo script. |
 | **2. Schema first (short)** | List databases, properties, and relations **before** building in Notion (even a bullet list in this repo). | Agents and MCP work best on **consistent** property names and statuses. |
-| **3. Household data in Notion** | Parent page (e.g. “Life-OS · Household”), databases, **seed rows** (realistic fake data is fine). | Gives `notion-search` / `notion-fetch` something real to hit. |
+| **3. Household data in Notion** | Parent page (e.g. “Life-OS · Household”), databases, **seed rows** (realistic fake data is fine). See [HOUSEHOLD_NOTION_BLUEPRINT.md](./HOUSEHOLD_NOTION_BLUEPRINT.md) for a full structure (databases, hub blocks, tutorials). | Gives `notion-search` / `notion-fetch` something real to hit. |
 | **4. Notion MCP + OAuth** | Connect the hosted server (`https://mcp.notion.com/mcp`) from your **Gemini** surface (or from [Notion → Settings → Connections → Notion MCP](https://www.notion.com/help/notion-mcp) if that’s how your client is set up). Complete OAuth. | Confirms access to the same workspace as step 3. |
 | **5. Verify tools** | In Gemini, run **read** paths: search + fetch your household page/DB. Then **one write**: update a property or add a row (with review). | Proves MCP depth before you design agent logic. |
 | **6. Agent behavior** | Prompts / flows that compose tools (e.g. “what’s due this week?” → update status). | This is your “system or process,” built on a proven connection. |
