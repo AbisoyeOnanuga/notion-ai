@@ -24,9 +24,9 @@ It can span any field: engineering, sales, finance, and more. The goal is strong
 
 ## This repository
 
-This project will target **high-leverage** systems or tools that serve the **Notion ecosystem** broadly—not a niche idea that only solves a personal edge case. The exact problem and solution are still open for brainstorming.
+**Life-OS** — a Notion-backed agent for scattered life admin, demonstrated first on a **household** wedge (maintenance, rhythm, home ops). **Team:** MCP-master. The build is meant to serve the **Notion ecosystem** broadly, not a one-off personal script.
 
-**Hackathon strategy** (judging criteria, brief alignment, docs, scope): [STRATEGY.md](./STRATEGY.md).
+**Strategy** (Gemini, optional integrations, judging, roadmap vs v1): [STRATEGY.md](./STRATEGY.md).
 
 ---
 

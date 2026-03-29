@@ -29,7 +29,7 @@ This matches the challenge ask: *impressive system or process using Notion MCP* 
 
 | Criterion | What judges look for | Our angle |
 |-----------|----------------------|-----------|
-| **Originality & Creativity** | Not “yet another chat wrapper.” Novel pairing of problem + Notion-native structure + agent behavior. | Consumer life-OS or study-OS **as a first-class story**; a **cloneable template** + **opinionated schema**; demo narrative that feels inevitable in hindsight. |
+| **Originality & Creativity** | Not “yet another chat wrapper.” Novel pairing of problem + Notion-native structure + agent behavior. | **Life-OS** as narrative: a **cloneable household template** + **opinionated schema**; demo story that feels inevitable in hindsight. |
 | **Technical Complexity** | Non-trivial integration, real constraints handled (permissions, structure, updates), not fake demos. | Multi-step MCP flows: search/fetch → reason → create/update pages or DB rows → optional views/comments; show **tool composition** from [supported tools](https://developers.notion.com/guides/mcp/mcp-supported-tools). If we add **another surface** (e.g. messaging, browser, calendar), it must **compose** with Notion, not replace it. |
 | **Use of Underlying Technology** | Notion MCP is the star — not incidental. | Visible **Notion-as-source-of-truth**: schema we design, pages/databases the agent maintains, before/after in the workspace. Align with official [get started](https://developers.notion.com/guides/mcp/get-started-with-mcp) patterns. |
 
@@ -64,20 +64,65 @@ This matches the challenge ask: *impressive system or process using Notion MCP* 
 
 ---
 
-## Scope: vision vs v1 (unchanged strategy)
+## Naming
 
-- **Vision:** Consolidated **life / study / household** intelligence with Notion as memory — extensible modules.
-- **v1 (submission):** **One wedge** with an end-to-end demo loop and a template others can duplicate.
-- **Candidates:** (a) **household / maintenance / rhythm**, (b) **reading & study OS** — pick based on fastest path to a **credible** graph of Notion data + MCP depth.
+| Role | Name |
+|------|------|
+| **Product / system** | **Life-OS** — Notion-backed agent for consolidating scattered life admin into one workspace. |
+| **Team** | **MCP-master** |
 
 ---
 
-## Open decisions (fill in during execution)
+## Scope: Life-OS (vision) vs household (v1 wedge)
 
-- [ ] **Wedge:** household vs reading/study (or hybrid only if one primary demo story).
-- [ ] **Product name / team name** (for README and submission).
-- [ ] **Client stack:** which MCP host (Cursor, Claude Code, ChatGPT connector, custom client) drives the demo.
-- [ ] **Optional second integration:** only if it clearly increases “Technical Complexity” without diluting Notion MCP as the hero.
+**Two layers — both true; do not mix them in one demo scope.**
+
+1. **Life-OS (product story)**  
+   The *umbrella*: “your life admin has one structured home in Notion; the agent reads/writes it via MCP.” That can eventually include **study, kids’ sports, bills**, etc. — that is **roadmap**, not what you must build in one hackathon.
+
+2. **Household (v1 wedge)**  
+   The *proof*: one domain — e.g. maintenance, recurring chores, warranties, seasonal tasks, “house in good standing” — with a **deep** Notion schema and a **single** demo script (before/after workspace). This **illustrates** how Life-OS would handle life admin **without** building every module now.
+
+**What “hybrid only if one primary demo story” meant**  
+If you ever blend two domains (e.g. household + study) in one submission, judges should still see **one clear storyline** — not two half-built demos. **Recommended for this project:** **no hybrid in v1.** Ship **household-only** for the demo; mention study (or other modules) explicitly as **“next: same pattern, different template.”** That removes the confusion between “full life-OS in one repo” vs “one part of household as a demo for the whole thesis.”
+
+**Short answer:** You are building **Life-OS** as the *name and thesis*. You are **demonstrating** it with **one household wedge** — not managing household + study in equal depth in v1.
+
+---
+
+## Client stack
+
+| Choice | Notes |
+|--------|--------|
+| **Primary AI client** | **Gemini** (Google) — confirm for your exact surface (e.g. Gemini app, Google AI Studio, Antigravity, Gemini CLI) that it can act as an **MCP client** to **Notion’s hosted server** (`https://mcp.notion.com/mcp` per [get started](https://developers.notion.com/guides/mcp/get-started-with-mcp)) and complete **OAuth**. If a given Gemini surface does not support remote MCP yet, fallback is another listed client for demo **or** a thin custom bridge — document honestly. |
+
+**Notion MCP remains the integration under test**; Gemini is the **orchestrator** that calls MCP tools.
+
+---
+
+## Optional “second integration” (what counts, what to pick)
+
+**Definition:** Anything **outside Notion** that the agent also uses to **observe** or **act** — email, calendar, fitness, commerce, chat — *in addition* to **Notion MCP**. It should **feed or complement** Notion (e.g. pull a due date → write a Notion task), not replace Notion as the source of truth.
+
+**Hackathon discipline:** One strong **Notion MCP** story beats five logo slides. Add **at most one** second integration in v1 if it is **real in the demo**.
+
+| Idea | Realism | Role in Life-OS / household |
+|------|---------|-----------------------------|
+| **Gmail** (API or “manual export” workflow) | High if you use Google OAuth + Gmail API | Bills, shipping, school mail → tasks or DB rows in Notion |
+| **Google Calendar** | High | Deadlines, maintenance windows, kid events → links or mirrored tasks in Notion |
+| **Strava / Runna** | Medium — APIs or export; Strava has developer API | Optional “household health / runs” → log summary page in Notion |
+| **Amazon** | Low for full automation — no friendly consumer “order for me” API | Demos often use **manual** paste of order/tracking into Notion, or **email receipts** into Gmail → agent summarizes in Notion |
+| **WhatsApp** | Very low for official API (Business API is not casual DMs) | Usually **out of scope** unless you fake with screenshots or use a personal bridge — risky for judging |
+
+**Practical v1:** **Notion MCP + (optional) Gmail or Calendar** if you already live in Google and Gemini fits. Defer Amazon/WhatsApp unless you have a credible, honest mechanism.
+
+---
+
+## Open decisions (remaining)
+
+- [ ] **Household sub-focus inside the wedge** (e.g. maintenance + inventory vs chores-only — pick one storyline).
+- [ ] **Gemini surface + MCP wiring** verified end-to-end with Notion OAuth.
+- [ ] **Second integration:** none vs one; if one, which (see table above).
 
 ---
 
