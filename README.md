@@ -1,4 +1,4 @@
-# Notion × MLH — MCP challenge
+# Notion × MLH - MCP challenge
 
 Work in progress: scope, requirements, and the concrete problem to solve are still being defined.
 
@@ -25,6 +25,8 @@ It can span any field: engineering, sales, finance, and more. The goal is strong
 ## This repository
 
 This project will target **high-leverage** systems or tools that serve the **Notion ecosystem** broadly—not a niche idea that only solves a personal edge case. The exact problem and solution are still open for brainstorming.
+
+**Hackathon strategy** (judging criteria, brief alignment, docs, scope): [STRATEGY.md](./STRATEGY.md).
 
 ---
 
