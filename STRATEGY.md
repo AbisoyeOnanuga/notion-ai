@@ -126,6 +126,28 @@ If you ever blend two domains (e.g. household + study) in one submission, judges
 
 ---
 
+## Phase 1: Build order (foundation)
+
+Your sequence is right; a few steps around it make the foundation “deep” instead of accidental.
+
+| Step | What to do | Why |
+|------|------------|-----|
+| **1. Sub-focus** | Pick one household storyline (e.g. maintenance + seasonal tasks, or inventory + warranties). | One schema; one demo script. |
+| **2. Schema first (short)** | List databases, properties, and relations **before** building in Notion (even a bullet list in this repo). | Agents and MCP work best on **consistent** property names and statuses. |
+| **3. Household data in Notion** | Parent page (e.g. “Life-OS · Household”), databases, **seed rows** (realistic fake data is fine). | Gives `notion-search` / `notion-fetch` something real to hit. |
+| **4. Notion MCP + OAuth** | Connect the hosted server (`https://mcp.notion.com/mcp`) from your **Gemini** surface (or from [Notion → Settings → Connections → Notion MCP](https://www.notion.com/help/notion-mcp) if that’s how your client is set up). Complete OAuth. | Confirms access to the same workspace as step 3. |
+| **5. Verify tools** | In Gemini, run **read** paths: search + fetch your household page/DB. Then **one write**: update a property or add a row (with review). | Proves MCP depth before you design agent logic. |
+| **6. Agent behavior** | Prompts / flows that compose tools (e.g. “what’s due this week?” → update status). | This is your “system or process,” built on a proven connection. |
+
+**You are not missing a hidden prerequisite** before (1)–(3). Optional but useful:
+
+- **Naming:** Clear page titles and DB names — search and fetch rely on them ([Notion MCP best practices](https://www.notion.com/help/notion-mcp)).
+- **Gemini:** Confirm your exact app (Gemini in browser, Google AI Studio, Antigravity, CLI, etc.) supports **remote MCP** + OAuth to Notion; if not, document fallback for the demo ([get started](https://developers.notion.com/guides/mcp/get-started-with-mcp)).
+
+**Defer until after Phase 1:** secondary integrations (Gmail, Calendar, etc.), automation without humans in the loop, polish. **Testing** starts in step 5; expand once the core loop is stable.
+
+---
+
 ## Verdict: is the initial idea still valid?
 
 **Yes.** “Consolidate context in Notion → use Notion MCP so AI can act on real workspace state” is exactly the integration story the challenge rewards. Choosing **which workflow** (household vs study, etc.) is a **scope** decision, not a validity decision — keep the wedge narrow, the narrative broad, and the MCP usage **visible and structural**.
