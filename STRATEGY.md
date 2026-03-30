@@ -120,8 +120,9 @@ If you ever blend two domains (e.g. household + study) in one submission, judges
 
 ## Open decisions (remaining)
 
-- [ ] **Household sub-focus inside the wedge** (e.g. maintenance + inventory vs chores-only — pick one storyline).
-- [ ] **Gemini surface + MCP wiring** verified end-to-end with Notion OAuth.
+- [x] **Notion ground truth** (hub, DBs, runbook, views) — done when you moved to MCP.
+- [ ] **Gemini surface + MCP wiring** verified end-to-end with Notion OAuth ([MCP_AGENT_SETUP.md](./MCP_AGENT_SETUP.md)).
+- [ ] **Life-OS prompts / demo script** saved (weekend prep, pantry, replace pipeline — see Phase 2 doc).
 - [ ] **Second integration:** none vs one; if one, which (see table above).
 
 ---
@@ -145,6 +146,8 @@ Your sequence is right; a few steps around it make the foundation “deep” ins
 - **Gemini:** Confirm your exact app (Gemini in browser, Google AI Studio, Antigravity, CLI, etc.) supports **remote MCP** + OAuth to Notion; if not, document fallback for the demo ([get started](https://developers.notion.com/guides/mcp/get-started-with-mcp)).
 
 **Defer until after Phase 1:** secondary integrations (Gmail, Calendar, etc.), automation without humans in the loop, polish. **Testing** starts in step 5; expand once the core loop is stable.
+
+**Phase 2 (Notion ready → MCP + agent):** follow [MCP_AGENT_SETUP.md](./MCP_AGENT_SETUP.md) — connect `https://mcp.notion.com/mcp`, verify search/fetch/write with Gemini (or documented fallback client), then define Life-OS prompts/workflows.
 
 ---
 

@@ -28,6 +28,8 @@ It can span any field: engineering, sales, finance, and more. The goal is strong
 
 **Strategy** (Gemini, optional integrations, judging, roadmap vs v1): [STRATEGY.md](./STRATEGY.md).
 
+**MCP + agent setup** (after Notion is ready — connect Gemini, verify tools, demo flows): [MCP_AGENT_SETUP.md](./MCP_AGENT_SETUP.md).
+
 ---
 
 *Challenge context: Notion MCP + MLH hackathon.*
