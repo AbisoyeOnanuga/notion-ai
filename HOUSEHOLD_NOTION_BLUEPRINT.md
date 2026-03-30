@@ -41,6 +41,8 @@ Life-OS · Household                    ← Hub (document + linked views)
 
 ## 2. Hub page (`Life-OS · Household`) — block mix (not bland text)
 
+**Step-by-step copy, toggles, columns, and embed rules (your 2-DB setup):** [HUB_PAGE_BUILD.md](./HUB_PAGE_BUILD.md).
+
 Build the hub with **several Notion block types**:
 
 | Block type | Where / why |
@@ -60,6 +62,8 @@ Add **bold**, *italic*, and `inline code` for one or two terms (e.g. `warranty`,
 ---
 
 ## 3. Document: `Ops · Runbook` (depth without a database)
+
+**What it is vs your DBs, and full copy-paste sections:** [OPS_RUNBOOK.md](./OPS_RUNBOOK.md).
 
 Purpose: **Procedures and narrative** MCP can quote or summarize.
 
