@@ -1,5 +1,13 @@
 # Notion × MLH - MCP challenge
 
+**Life-OS (Notion hub):** [Open Life-OS in Notion](https://www.notion.so/Life-OS-332a8981dd9c805b9cedcb9baad8d062?source=copy_link)
+
+![Life-OS workspace screenshot](assets/notion-mcp.png)
+
+*Add your screenshot as `assets/life-os-screenshot.png` before you push.*
+
+---
+
 Work in progress: scope, requirements, and the concrete problem to solve are still being defined.
 
 ## The problem
