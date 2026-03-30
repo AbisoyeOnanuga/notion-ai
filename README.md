@@ -4,8 +4,6 @@
 
 ![Life-OS workspace screenshot](assets/notion-mcp.png)
 
-*Add your screenshot as `assets/life-os-screenshot.png` before you push.*
-
 ---
 
 Work in progress: scope, requirements, and the concrete problem to solve are still being defined.
