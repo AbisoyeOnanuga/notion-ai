@@ -26,9 +26,28 @@ It can span any field: engineering, sales, finance, and more. The goal is strong
 
 **Life-OS** — a Notion-backed agent for scattered life admin, demonstrated first on a **household** wedge (maintenance, rhythm, home ops). **Team:** MCP-master. The build is meant to serve the **Notion ecosystem** broadly, not a one-off personal script.
 
-**Strategy** (Gemini, optional integrations, judging, roadmap vs v1): [STRATEGY.md](./STRATEGY.md).
+**Start here after Notion is built:** [STEP_BY_STEP.md](./STEP_BY_STEP.md) — install Gemini CLI, connect Notion MCP, OAuth, verification prompts, demo workflows.
 
-**MCP + agent setup** (after Notion is ready — connect Gemini, verify tools, demo flows): [MCP_AGENT_SETUP.md](./MCP_AGENT_SETUP.md).
+**Strategy** (judging, roadmap): [STRATEGY.md](./STRATEGY.md).
+
+**MCP + agent** (background + links): [MCP_AGENT_SETUP.md](./MCP_AGENT_SETUP.md).
+
+### Demo video vs Part D / Part E
+
+| Piece | What it is | Use in video? |
+|--------|------------|----------------|
+| **Part D** ([STEP_BY_STEP.md](./STEP_BY_STEP.md)) | Smoke test: search, fetch, one write — proves MCP works. | Optional clip or skip if time is tight; you already proved it. |
+| **Part E** | Life-OS workflows (weekend prep + groceries) with `prompts/LIFE_OS_SYSTEM.md` — **this is the product**. | **Yes — lead with this.** Show Gemini CLI calling Notion tools, then **switch to Notion** so the viewer sees real pages/DBs. |
+
+**Interface:** The challenge does **not** require a custom web or mobile UI. **Gemini CLI + Notion MCP** is a valid submission: the “agent” is Gemini using MCP tools against your workspace. A separate UI is optional polish, not required to win.
+
+### README / submission checklist
+
+- [ ] **One-liner:** what Life-OS is (Notion as ground truth + Gemini via MCP for household ops).
+- [ ] **How to run:** Node 20+, `npm install -g @google/gemini-cli`, clone repo, `cd` into repo (uses [`.gemini/settings.json`](./.gemini/settings.json)), `gemini` → `/mcp auth notion`.
+- [ ] **Link** [STEP_BY_STEP.md](./STEP_BY_STEP.md) for full setup.
+- [ ] **Demo script (3–5 min):** problem (scattered life admin) → CLI: one **Part E** workflow → Notion browser: show updated comment or data.
+- [ ] **Team:** MCP-master; optional: embed or link screen recording.
 
 ---
 

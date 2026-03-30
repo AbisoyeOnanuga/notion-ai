@@ -2,7 +2,29 @@
 
 **Prerequisite:** Notion household hub, databases, runbook, and seed data are done ([STRATEGY.md](./STRATEGY.md) Phase 1).
 
-This doc is the execution order after that: **connect MCP → verify tools → define agent behavior → optional second integration.**
+**Linear checklist (do this in order):** [STEP_BY_STEP.md](./STEP_BY_STEP.md).
+
+This doc is background and links: **connect MCP → verify tools → define agent behavior → optional second integration.**
+
+---
+
+## How this maps to the challenge (MLH × Notion)
+
+The challenge is to build an **impressive system or process using Notion MCP** — i.e. your **workspace stays the source of truth**, and an AI **uses Notion’s hosted MCP tools** (search, fetch, update, etc.) to read and change that workspace, not to guess from a blank chat.
+
+That implies three pieces:
+
+1. **Notion** — your Life-OS data (you already built this).
+2. **Notion MCP server** — hosted by Notion at **`https://mcp.notion.com/mcp`** ([Connecting to Notion MCP](https://developers.notion.com/guides/mcp/get-started-with-mcp)).
+3. **An MCP client** — something that speaks the MCP protocol, runs **Gemini**, and **calls those tools** when the model decides to.
+
+Gemini is **not** “wrong” because it is not in Notion’s one-click gallery. The gallery highlights Cursor, Claude, ChatGPT, etc. ([get started](https://developers.notion.com/guides/mcp/get-started-with-mcp)); **any compliant MCP client** can connect to the same URL. Your submission stays valid if you clearly show **Gemini (via Gemini CLI or another supported path) + Notion MCP + your Life-OS workflow.**
+
+```text
+[ You ] → [ Gemini — model + tool caller ]
+              ↓ MCP (OAuth)
+         [ https://mcp.notion.com/mcp ] → [ Your Notion workspace ]
+```
 
 ---
 
@@ -12,33 +34,41 @@ This doc is the execution order after that: **connect MCP → verify tools → d
 |--------|------|
 | **Notion workspace** | Ground truth (pages + DBs). |
 | **Notion MCP** (`https://mcp.notion.com/mcp`) | Hosted tools: search, fetch, create/update pages, etc. ([supported tools](https://developers.notion.com/guides/mcp/mcp-supported-tools)). |
-| **Gemini** | MCP **client** that invokes those tools and reasons over results. |
-| **Life-OS “agent”** | Your **prompts + policies + optional scripts** that tell Gemini *when* to call which tools (household workflows). |
+| **Gemini** | The **model** inside an MCP-capable **client** (recommended: **Gemini CLI**) that invokes those tools and reasons over results. |
+| **Life-OS “agent”** | Your **prompts + policies** that tell Gemini *when* to call which tools (household workflows). |
 
-Notion MCP uses **OAuth** as your user — same visibility as you in Notion ([get started](https://developers.notion.com/guides/mcp/get-started-with-mcp), [FAQ](https://developers.notion.com/guides/mcp/get-started-with-mcp)).
+Notion MCP uses **OAuth** as your user — same visibility as you in Notion ([get started FAQ](https://developers.notion.com/guides/mcp/get-started-with-mcp)).
 
 ---
 
 ## 2. Connect Notion MCP (workspace + OAuth)
 
-Do **both** if your client allows: register intent in Notion, then connect from the client.
-
-1. In **Notion** (desktop or web): **Settings** → **Connections** → **Notion MCP** — pick your tool and complete OAuth if prompted ([Notion Help](https://www.notion.com/help/notion-mcp)).
-2. In your **Gemini surface** (see §3), add the server URL **`https://mcp.notion.com/mcp`** (Streamable HTTP) and complete OAuth when the client opens the flow.
-
-**Official endpoint reference:** [Connecting to Notion MCP](https://developers.notion.com/guides/mcp/get-started-with-mcp).
+1. In **Notion**: **Settings** → **Connections** → **Notion MCP** — complete any connection flow if your client is listed ([Notion Help — Notion MCP](https://www.notion.com/help/notion-mcp)).
+2. In your **MCP client** (Gemini CLI): point at **`https://mcp.notion.com/mcp`** and complete OAuth when the client opens the browser flow (see §3).
 
 **Security:** [MCP security best practices](https://developers.notion.com/guides/mcp/mcp-security-best-practices).
 
 ---
 
-## 3. Gemini — pick a surface and attach MCP
+## 3. Gemini + Notion MCP — supported ways (from official docs)
 
-Not every Gemini UI exposes MCP the same way. Use **one** path that your environment actually supports; verify tools appear before you script demos.
+### Why this feels “custom”
 
-| Surface | What to do |
-|---------|------------|
-| **Gemini CLI** | Configure remote MCP with **`httpUrl`**. Official doc: [MCP servers with the Gemini CLI](https://google-gemini.github.io/gemini-cli/docs/tools/mcp-server.html). Add to your Gemini CLI `settings.json` under `mcpServers` (user or project scope per CLI docs). Example shape: |
+Notion documents **first-class** setup for tools like Cursor and Claude ([Connecting to Notion MCP](https://developers.notion.com/guides/mcp/get-started-with-mcp)). **Gemini** is not listed there as a one-click connector today, but **Google’s own Gemini CLI** is an MCP client that supports **remote** servers over **Streamable HTTP** via **`httpUrl`**.
+
+**Official references:**
+
+| Topic | Documentation |
+|--------|----------------|
+| **Gemini CLI — MCP servers** (transport types, `httpUrl`, OAuth) | [MCP servers with the Gemini CLI](https://google-gemini.github.io/gemini-cli/docs/tools/mcp-server.html) · [Source on GitHub](https://github.com/google-gemini/gemini-cli/blob/main/docs/tools/mcp-server.md) |
+| **Notion — hosted MCP URL + OAuth expectations** | [Connecting to Notion MCP](https://developers.notion.com/guides/mcp/get-started-with-mcp) |
+| **Notion — build your own MCP client** (if you outgrow the CLI) | [Integrating your own MCP client](https://developers.notion.com/guides/mcp/build-mcp-client) |
+| **Gemini CLI — configuration file location** | [Gemini CLI configuration](https://google-gemini.github.io/gemini-cli/docs/get-started/configuration.html) |
+
+### Path A (recommended): Gemini CLI + `httpUrl` + Notion OAuth
+
+1. Install and use **[Gemini CLI](https://google-gemini.github.io/gemini-cli/)** (terminal).
+2. Edit **`settings.json`** and add under `mcpServers` (per [MCP servers doc](https://google-gemini.github.io/gemini-cli/docs/tools/mcp-server.html)):
 
 ```json
 {
@@ -50,12 +80,23 @@ Not every Gemini UI exposes MCP the same way. Use **one** path that your environ
 }
 ```
 
-Restart the CLI; complete OAuth when prompted. Set `"trust": true` only if you understand the CLI’s trust model for that server.
+3. **OAuth:** The CLI supports **OAuth 2.0 for remote MCP servers** over SSE or HTTP. For servers that support discovery, it can detect **401**, discover endpoints, open a **browser**, and store tokens (see **“OAuth support for remote MCP servers”** in the same doc). Requirements include a local browser and redirect on **`http://localhost:7777/oauth/callback`** (documented there — headless SSH-only environments may not work).
+4. In the CLI, use **`/mcp auth`** to list servers needing auth and authenticate — e.g. `/mcp auth notion` (see **“Managing OAuth authentication”** in [MCP servers with the Gemini CLI](https://google-gemini.github.io/gemini-cli/docs/tools/mcp-server.html)).
+5. Use **`/mcp`** to confirm Notion tools are listed.
 
-| **Google Antigravity** | Notion docs recommend a **custom** MCP server URL (not deprecated packages): same URL `https://mcp.notion.com/mcp` — follow [Antigravity custom MCP](https://developers.notion.com/guides/mcp/get-started-with-mcp) (linked from Notion’s get-started page). |
-| **Gemini in browser / other** | If MCP is not available, use **Gemini CLI** or **Cursor + Notion MCP** for development/demo and state that in the README — still valid for the hackathon if Notion MCP is clearly the integration under test. |
+Set `"trust": true` only if you understand the CLI’s trust model; default is to confirm tool calls.
 
-**Custom client builders:** [Build an MCP client (Notion)](https://developers.notion.com/guides/mcp/build-mcp-client) (OAuth details).
+### Path B: Google Antigravity (if you use it)
+
+Notion’s [get started](https://developers.notion.com/guides/mcp/get-started-with-mcp) mentions **Antigravity** with a **custom** MCP URL (`https://mcp.notion.com/mcp`), not the deprecated `notion-mcp-server` package. Follow Google’s Antigravity MCP instructions and paste the same URL.
+
+### Path C: Truly custom (code)
+
+If you need a **small app** (e.g. web UI + Gemini API + MCP): implement an MCP client that completes **OAuth 2.0 Authorization Code with PKCE** against Notion’s MCP, as in [Integrating your own MCP client](https://developers.notion.com/guides/mcp/build-mcp-client). That is more work than Path A but is the “by the book” integration pattern.
+
+### What usually does *not* work as-is
+
+- **gemini.google.com** chat in the browser — there is **no** universal “paste Notion MCP URL” in standard consumer Gemini UI comparable to Cursor’s MCP panel. Use **Gemini CLI** (or Path C) for a demoable Notion MCP + Gemini stack.
 
 ---
 
@@ -120,6 +161,9 @@ Optional: save prompts in this repo as `prompts/` (e.g. `weekend-prep.md`) for r
 | Topic | URL |
 |--------|-----|
 | Notion MCP get started | https://developers.notion.com/guides/mcp/get-started-with-mcp |
+| Notion — integrate your own MCP client (OAuth, PKCE) | https://developers.notion.com/guides/mcp/build-mcp-client |
 | Supported tools | https://developers.notion.com/guides/mcp/mcp-supported-tools |
 | Gemini CLI MCP | https://google-gemini.github.io/gemini-cli/docs/tools/mcp-server.html |
+| Gemini CLI configuration (`settings.json`) | https://google-gemini.github.io/gemini-cli/docs/get-started/configuration.html |
+| Gemini CLI (GitHub) | https://github.com/google-gemini/gemini-cli |
 | Notion MCP (Help) | https://www.notion.com/help/notion-mcp |
