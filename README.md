@@ -24,11 +24,7 @@ It can span any field: engineering, sales, finance, and more. The goal is strong
 
 ## This repository
 
-**Life-OS** — a Notion-backed agent for scattered life admin, demonstrated first on a **household** wedge (maintenance, rhythm, home ops). **Team:** MCP-master. The build is meant to serve the **Notion ecosystem** broadly, not a one-off personal script.
-
-**Start here after Notion is built:** [STEP_BY_STEP.md](./STEP_BY_STEP.md) — install Gemini CLI, connect Notion MCP, OAuth, verification prompts, demo workflows.
-
-**Strategy** (judging, roadmap): [STRATEGY.md](./STRATEGY.md).
+**Life-OS** — a Notion-backed agent for scattered life admin, demonstrated first on a **household** wedge (maintenance, rhythm, home ops). The build is meant to serve the **Notion ecosystem** broadly, not a one-off personal script.
 
 **MCP + agent** (background + links): [MCP_AGENT_SETUP.md](./MCP_AGENT_SETUP.md).
 
