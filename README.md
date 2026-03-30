@@ -31,7 +31,3 @@ It can span any field: engineering, sales, finance, and more. The goal is strong
 **Life-OS** — a Notion-backed agent for scattered life admin, demonstrated first on a **household** wedge (maintenance, rhythm, home ops). The build is meant to serve the **Notion ecosystem** broadly, not a one-off personal script.
 
 **MCP + agent** (background + links): [MCP_AGENT_SETUP.md](./MCP_AGENT_SETUP.md).
-
----
-
-*Challenge context: Notion MCP + MLH hackathon.*
