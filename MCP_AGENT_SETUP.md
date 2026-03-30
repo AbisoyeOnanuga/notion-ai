@@ -116,19 +116,21 @@ If step 5 is scary, use a **dedicated test page** or test row labeled `MCP_TEST`
 
 **Rate limits:** avoid parallel search spam ([supported tools](https://developers.notion.com/guides/mcp/mcp-supported-tools)).
 
+**If the model says it cannot write because `notion-update-page` needs `properties`:** that usually means it mixed up **property** updates (database columns) with **body** or **note** updates. For additive lists or notes, use **`notion-create-comment`**. For body edits, use the **content** command shape for `notion-update-page` after **`notion-fetch`**. Details: `prompts/LIFE_OS_SYSTEM.md`.
+
 ---
 
 ## 5. Life-OS agent = behavior on top of verified tools
 
 The “agent” is **not** a separate binary unless you build one. For the hackathon, it is usually:
 
-1. **System instructions** (persistent): “You are Life-OS. Notion is source of truth. Prefer `notion-search` then `notion-fetch`; confirm destructive updates with the user.”
+1. **System instructions** (persistent): load **`prompts/LIFE_OS_SYSTEM.md`** (Life-OS rules, tool routing for writes, no manual copy-paste fallbacks).
 2. **Workflow prompts** (saved / scripted demo):
 
 | Demo | Flow |
 |------|------|
 | **Weekend prep** | Search appliances due in next 7 days → list → offer to add a comment or status on the row. |
-| **Pantry check** | Query groceries DB (via fetch + schema) → list items below par or expiring soon → suggest shopping bullets as a **temporary** block (or comment) for human copy. |
+| **Pantry check** | Query groceries DB (via fetch + schema) → list items below par or expiring soon → write shopping bullets with **`notion-create-comment`** on the hub or a target page (do not fall back to “copy manually”; see `prompts/LIFE_OS_SYSTEM.md`). |
 | **Replace pipeline** | Search Projects / replace filter context → summarize stalled items from fetched pages. |
 
 3. **Human in the loop:** Hosted MCP is user-OAuth — keep approval for bulk updates ([get started FAQ](https://developers.notion.com/guides/mcp/get-started-with-mcp)).
