@@ -6,8 +6,6 @@
 
 ---
 
-Work in progress: scope, requirements, and the concrete problem to solve are still being defined.
-
 ## The problem
 
 Your work is scattered: code in an editor, plans in docs, tasks in messages, email, and calendar.
