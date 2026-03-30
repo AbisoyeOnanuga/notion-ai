@@ -70,7 +70,8 @@ The **agent** is **Gemini + your instructions**, not a second app.
 | E1 | Copy `prompts/LIFE_OS_SYSTEM.md` (in this repo) into the CLI as a **first message** or add it to CLI context if you use `GEMINI.md` / project context ([configuration](https://google-gemini.github.io/gemini-cli/docs/get-started/configuration.html)). |
 | E2 | Run **Workflow 1 — Weekend prep:** “Using only Notion MCP: list maintenance or repair items due in the next 14 days from my databases; then suggest one **comment** I could add to the highest-priority row.” |
 | E3 | Run **Workflow 2 — Groceries:** “Using Notion MCP: identify consumables that are low or near expiry from my groceries database and output a **shopping shortlist** in chat (do not invent items not in Notion).” |
-| E4 | Save **screenshots or a short terminal transcript** for the submission / demo. |
+| E3b | Run **Workflow 3 — Action-first** (comment or update in Notion): see [SUBMISSION.md](./SUBMISSION.md) — proves the agent **acts** on the workspace, not only reads. |
+| E4 | Save **screenshots or a short terminal transcript** for the submission / demo ([SUBMISSION.md](./SUBMISSION.md) checklist). |
 
 ---
 
@@ -118,5 +119,5 @@ The **CLI is the interface** for this submission unless you build something else
 - [x] `.gemini/settings.json` has `notion` → `https://mcp.notion.com/mcp`  
 - [x] `/mcp auth notion` completed  
 - [x] D1–D4 pass; D5 one write visible in Notion  
-- [ ] E2–E3 workflows run once  
-- [ ] README submission section filled (demo script + how to run — see [README.md](./README.md))
+- [ ] E2–E3 workflows run once; **E3b** action workflow run once ([SUBMISSION.md](./SUBMISSION.md))  
+- [ ] README + [SUBMISSION.md](./SUBMISSION.md) filled (screenshots, in-depth description)
