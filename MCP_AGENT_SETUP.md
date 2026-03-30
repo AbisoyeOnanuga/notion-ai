@@ -1,8 +1,6 @@
 # Phase 2 — Notion MCP, Gemini, and Life-OS agent
 
-**Prerequisite:** Notion household hub, databases, runbook, and seed data are done ([STRATEGY.md](./STRATEGY.md) Phase 1).
-
-**Linear checklist (do this in order):** [STEP_BY_STEP.md](./STEP_BY_STEP.md).
+**Prerequisite:** Notion household hub, databases, 'running the house' page are done
 
 This doc is background and links: **connect MCP → verify tools → define agent behavior → optional second integration.**
 
